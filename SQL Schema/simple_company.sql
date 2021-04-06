@@ -15,9 +15,9 @@ CREATE SCHEMA IF NOT EXISTS `simple_company` DEFAULT CHARACTER SET utf8 ;
 USE `simple_company` ;
 
 -- -----------------------------------------------------
--- Table `simple_company`.`Product`
+-- Table `simple_company`.`product`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `simple_company`.`Product` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`product` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `prodName` VARCHAR(45) NOT NULL,
   `prodDescription` VARCHAR(1024) NOT NULL,
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `simple_company`.`Customer`
+-- Table `simple_company`.`customer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `simple_company`.`Customer` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`customer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(45) NOT NULL,
   `lastName` VARCHAR(45) NOT NULL,
@@ -42,9 +42,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `simple_company`.`Purchase`
+-- Table `simple_company`.`purchase`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`purchase` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `productID` INT NOT NULL,
   `customerID` INT NOT NULL,
@@ -53,23 +53,23 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Purchase` (
   PRIMARY KEY (`id`),
   INDEX `productId_idx` (`productID` ASC) VISIBLE,
   INDEX `customerId_idx` (`customerID` ASC) VISIBLE,
-  CONSTRAINT `productId`
+  CONSTRAINT `productId_`
     FOREIGN KEY (`productID`)
-    REFERENCES `simple_company`.`Product` (`id`)
+    REFERENCES `simple_company`.`product` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `customerId`
+  CONSTRAINT `customerId_`
     FOREIGN KEY (`customerID`)
-    REFERENCES `simple_company`.`Customer` (`id`)
+    REFERENCES `simple_company`.`customer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `simple_company`.`Address`
+-- Table `simple_company`.`address`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `simple_company`.`Address` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`address` (
   `address1` VARCHAR(45) NOT NULL,
   `address2` VARCHAR(45) NULL,
   `city` VARCHAR(45) NOT NULL,
@@ -79,25 +79,25 @@ CREATE TABLE IF NOT EXISTS `simple_company`.`Address` (
   INDEX `customer_id_idx` (`customer_id` ASC) VISIBLE,
   CONSTRAINT `customer_id`
     FOREIGN KEY (`customer_id`)
-    REFERENCES `simple_company`.`Customer` (`id`)
+    REFERENCES `simple_company`.`customer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `simple_company`.`CreditCard`
+-- Table `simple_company`.`creditcard`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `simple_company`.`CreditCard` (
+CREATE TABLE IF NOT EXISTS `simple_company`.`creditcard` (
   `name` VARCHAR(45) NOT NULL,
   `ccNumber` VARCHAR(45) NOT NULL,
   `expDate` VARCHAR(45) NOT NULL,
   `securityCode` VARCHAR(45) NOT NULL,
   `customer_id` INT NOT NULL,
   INDEX `customer_id_idx` (`customer_id` ASC) VISIBLE,
-  CONSTRAINT `customer_idCC`
+  CONSTRAINT `customer_idCX`
     FOREIGN KEY (`customer_id`)
-    REFERENCES `simple_company`.`Customer` (`id`)
+    REFERENCES `simple_company`.`customer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

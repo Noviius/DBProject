@@ -21,11 +21,16 @@ import cs4347.jdbcProject.ecomm.util.DAOException;
 
 public class AddressDaoImpl implements AddressDAO
 {
+	
+	private static final String insertSQL = "INSERT INTO Address (address1, address2, city, state, zipcode) VALUES (?, ?, ?, ?, ?);";
 
     @Override
     public Address create(Connection connection, Address address, Long customerID) throws SQLException, DAOException
     {
         // TODO Auto-generated method stub
+    	
+    	
+    	
         return null;
     }
 
